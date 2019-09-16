@@ -1,5 +1,5 @@
 from flask import  Flask, render_template
-import os, datetime
+import os, sqlite3
 
 app = Flask(__name__)
 
@@ -32,9 +32,12 @@ def profile():
 
 @app.route('/showtime/')
 def showtime():
-    utc = datetime.datetime.utcnow().ctime()
-    loc = datetime.datetime.now().ctime()
-    return render_template('showtime.html', utc = utc, loc = loc)
+    conn = sqlite3.connect('cron_db.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM cron_table_01')
+    res = c.fetchall()
+
+    return render_template('showtime.html', res = res)
 
 
 

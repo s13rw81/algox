@@ -1,7 +1,7 @@
 {% extends 'template.html' %}
 {% block content %}
-<p class="text-center">UTC Time</p>
-<p class="text-center">{{ utc }}</p>
-<p class="text-center">Local Time</p>
-<p class="text-center">{{ loc }}</p>
+<p class="text-center"><strong>Result from database</strong></p>
+{% for row in res %}
+<p>ID: {{ row[0] }} DATE: {{ row[1] }} Message: {{ row[2] }} </p>
+{% endfor %}
 {% endblock content%}
